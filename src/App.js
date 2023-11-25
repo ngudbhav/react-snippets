@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { useCustomState as useState } from './polyfills/useCustomState';
 
 function App() {
+  const [state1, setState1] = useState(0);
+  const [state2, setState2] = useState('Hello');
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {state1}
+      <button onClick={() => setState1((prev) => prev + 1)}>Increment</button>
+      <button onClick={() => setState1((prev) => prev - 1)}>Decrement</button>
+      <button onClick={() => setState1(0)}>Reset</button>
+      <br />
+      {state2}
+      <button onClick={() => setState2((prev) => prev + '!')}>Add exclamation mark</button>
     </div>
   );
 }
