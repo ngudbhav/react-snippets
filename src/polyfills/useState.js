@@ -3,7 +3,7 @@ import { useForceUpdate } from '../utils/useForceUpdate'
 const states = [];
 let index = 0;
 
-export function useCustomState(initialValue = null) {
+export function useState(initialValue = null) {
   const localIndex = index;
   states[localIndex] ||= initialValue;
   const forceUpdate = useForceUpdate();
