@@ -20,7 +20,9 @@ export const useToast = () => {
       if (index !== -1) {
         toasts.splice(index, 1);
         forceUpdate();
+        return true;
       }
+      return false;
     }
   });
 };
