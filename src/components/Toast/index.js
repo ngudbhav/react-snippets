@@ -5,34 +5,6 @@ import './index.scss';
 
 const toasts = [];
 let index = 0;
-const ToastItem = ({ message, duration, id, handleToastHide }) => {
-  React.useEffect(() => {
-    setTimeout(() => handleToastHide(id), duration);
-  }, []);
-
-  return (
-    <div className="toast-item">
-      <div className="toast-item__message">{message}</div>
-      <a onClick={() => handleToastHide(id)} className="toast-item__action">x</a>
-    </div>
-  );
-};
-
-export default () => {
-  const [messages, _] = React.useState(toasts);
-  const toast = useToast();
-  const handleToastHide = (id) => {
-    toast.hide(id);
-  };
-
-  return (
-    <div className="toast-container">
-      {messages.map((toast, index) => (
-        <ToastItem key={index} {...toast} handleToastHide={handleToastHide} />
-      ))}
-    </div>
-  );
-};
 
 export const useToast = () => {
   const forceUpdate = useForceUpdate();
@@ -52,3 +24,35 @@ export const useToast = () => {
     }
   });
 };
+const ToastItem = ({ message, duration, id, handleToastHide }) => {
+  React.useEffect(() => {
+    setTimeout(() => handleToastHide(id), duration);
+  }, [handleToastHide, id, duration]);
+
+  return (
+    <div className="toast-item">
+      <div className="toast-item__message">{message}</div>
+      <button onClick={() => handleToastHide(id)} className="toast-item__action">
+        x
+      </button>
+    </div>
+  );
+};
+
+const Toast = () => {
+  const [messages,] = React.useState(toasts);
+  const toast = useToast();
+  const handleToastHide = (id) => {
+    toast.hide(id);
+  };
+
+  return (
+    <div className="toast-container">
+      {messages.map((toast, index) => (
+        <ToastItem key={index} {...toast} handleToastHide={handleToastHide} />
+      ))}
+    </div>
+  );
+};
+
+export default Toast;
