@@ -4,6 +4,8 @@ import { useState } from './polyfills/useState';
 import { useEffect } from "./polyfills/useEffect";
 import Toast, { useToast } from './components/Toast';
 import Popover, { PLACEMENTS } from "./components/Popover";
+import Select from "./components/Select";
+import Option from "./components/Select/Option";
 
 function App() {
   const toast = useToast();
@@ -54,6 +56,10 @@ function App() {
       >
         Popover content
       </Popover>
+      <Select>
+        <Option value="Option 1">Option 1</Option>
+        <Option value="Option 2">Option 2</Option>
+      </Select>
     </div>
   );
 }

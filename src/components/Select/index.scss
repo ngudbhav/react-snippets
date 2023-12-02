@@ -1,0 +1,29 @@
+.select {
+  &__label {
+    cursor: pointer;
+    border: 0;
+    padding: 0.5rem 1rem;
+    background: black;
+    color: white;
+    border-radius: 0.5rem;
+  }
+
+  &__dropdown {
+    background: black;
+    color: white;
+    border-radius: 0.5rem;
+    opacity: 0;
+    transition: all 0.2s ease-in-out, width 0s;
+    display: block;
+
+    &.popover--visible {
+      opacity: 1;
+      transition: all 0.2s ease-in-out, width 0s;
+    }
+  }
+}
+
+.option {
+  padding: 0.5rem 0.7rem;
+  cursor: pointer;
+}

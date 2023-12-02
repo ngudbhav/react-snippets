@@ -2,7 +2,7 @@ import React from "react";
 
 import "./index.scss";
 
-const BUFFER_PIXELS = 15;
+const BUFFER_PIXELS = 5;
 
 export const PLACEMENTS = {
   TOP: 'top',
@@ -11,7 +11,11 @@ export const PLACEMENTS = {
   RIGHT: 'right',
 };
 
-const Popover = ({ visible, children, onClose, placement }, ref) => {
+const Popover = ({
+  visible, children, onClose = () => {},
+  placement, showCloseButton = true,
+  className = '', style = {}
+}, ref) => {
   const childrenRef = React.useRef();
   const [position, setPosition] = React.useState({});
   const readPopoverPosition = React.useCallback(() => {
@@ -25,7 +29,7 @@ const Popover = ({ visible, children, onClose, placement }, ref) => {
       } else if (placement === PLACEMENTS.BOTTOM) {
         setPosition({
           left: refPosition.left,
-          top: refPosition.bottom + BUFFER_PIXELS
+          top: refPosition.bottom + BUFFER_PIXELS,
         });
       } else if (placement === PLACEMENTS.RIGHT) {
         setPosition({
@@ -48,14 +52,18 @@ const Popover = ({ visible, children, onClose, placement }, ref) => {
 
   return (
     <div
-      className={`popover popover--${placement} ${visible ? 'popover--visible' : ''}`}
-      style={position}
+      className={
+        `popover popover--${placement} ${visible ? 'popover--visible' : ''} ${className}`
+      }
+      style={{...position, ...style}}
       ref={childrenRef}
     >
       {children}
-      <button onClick={onClose}>
-        x
-      </button>
+      {showCloseButton && (
+        <button onClick={onClose}>
+          x
+        </button>
+      )}
     </div>
   );
 };
