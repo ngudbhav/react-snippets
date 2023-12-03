@@ -12,14 +12,6 @@
     background: black;
     color: white;
     border-radius: 0.5rem;
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out, top 0.2s ease-in-out, width 0s;
-    display: block;
-
-    &.popover--visible {
-      opacity: 1;
-      transition: opacity 0.2s ease-in-out, top 0.2s ease-in-out, width 0s;
-    }
   }
 }
 

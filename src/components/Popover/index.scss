@@ -1,8 +1,11 @@
 .popover {
   position: absolute;
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.2s ease-in-out, opacity 0.2s ease-in-out;
 
   &--visible {
-    display: block;
+    visibility: visible;
+    opacity: 1;
   }
 }
